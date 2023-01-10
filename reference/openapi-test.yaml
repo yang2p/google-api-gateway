@@ -2,9 +2,10 @@ swagger: '2.0'
 x-stoplight:
   id: 6hhos2agrtnzd
 info:
-  title: openapi-test
+  title: stoplight-studio-test-api
   version: '1.0'
-host: 'localhost:3000'
+x-google-backend:
+  address: https://openapi-7cawxn5aoq-an.a.run.app
 schemes:
   - http
 produces:
