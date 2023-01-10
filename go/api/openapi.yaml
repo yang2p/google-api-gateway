@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: openapi-test
+  version: "1.0"
+servers:
+- url: http://localhost:3000/
+paths:
+  /users/{userId}:
+    get:
+      description: Retrieve the information of the user with the matching user ID.
+      operationId: get-users-userId
+      parameters:
+      - description: Id of an existing user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            Get User Alice Smith:
+              example:
+                id: 142
+                firstName: Alice
+                lastName: Smith
+                email: alice.smith@gmail.com
+                dateOfBirth: 1997-10-31
+                emailVerified: true
+                signUpDate: 2019-08-24
+          description: User Found
+        "404":
+          content: {}
+          description: User Not Found
+      summary: Get User Info by User ID
+      tags: []
+    patch:
+      description: Update the information of an existing user.
+      operationId: patch-users-userId
+      parameters:
+      - description: Id of an existing user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_users_userId_request'
+        description: Patch user properties to update.
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            Update User Rebecca Baker:
+              example:
+                id: 13
+                firstName: Rebecca
+                lastName: Baker
+                email: rebecca@gmail.com
+                dateOfBirth: 1985-10-02
+                emailVerified: false
+                createDate: 2019-08-24
+          description: User Updated
+        "404":
+          content: {}
+          description: User Not Found
+        "409":
+          content: {}
+          description: Email Already Taken
+      summary: Update User Information
+      x-codegen-request-body-name: body
+  /user:
+    post:
+      description: Create a new user.
+      operationId: post-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post_user_request'
+        description: Post the necessary fields for the API to create a new user.
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User Created
+        "400":
+          content: {}
+          description: Missing Required Information
+        "409":
+          content: {}
+          description: Email Already Taken
+      summary: Create New User
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    User:
+      example:
+        firstName: firstName
+        lastName: lastName
+        emailVerified: true
+        dateOfBirth: 1997-10-31T00:00:00.000+00:00
+        id: 0
+        email: email
+        createDate: 2000-01-23
+      properties:
+        id:
+          description: Unique identifier for the given user.
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          format: email
+          type: string
+        dateOfBirth:
+          example: 1997-10-31
+          format: date
+          type: string
+        emailVerified:
+          description: Set to true if the user's email has been verified.
+          type: boolean
+        createDate:
+          description: The date that the user was created.
+          format: date
+          type: string
+      required:
+      - email
+      - emailVerified
+      - firstName
+      - id
+      - lastName
+      title: User
+      type: object
+    patch_users_userId_request:
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          description: "If a new email is given, the user's email verified property\
+            \ will be set to false."
+          type: string
+        dateOfBirth:
+          type: string
+      type: object
+    post_user_request:
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        dateOfBirth:
+          format: date
+          type: string
+      required:
+      - dateOfBirth
+      - email
+      - firstName
+      - lastName
+      type: object
+x-stoplight:
+  id: 6hhos2agrtnzd
+x-original-swagger-version: "2.0"
