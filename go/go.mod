@@ -1,4 +1,4 @@
-module github.com/yang2p/google-api-gateway
+module github.com/yang2p/google-api-gateway/go
 
 go 1.13
 

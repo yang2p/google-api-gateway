@@ -13,7 +13,7 @@ import (
 	"log"
 	"net/http"
 
-	openapi "github.com/yang2p/google-api-gateway/go"
+	openapi "github.com/yang2p/google-api-gateway/go/go"
 )
 
 func main() {
