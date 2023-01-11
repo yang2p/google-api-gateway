@@ -7,13 +7,13 @@ info:
 x-google-backend:
   address: https://openapi-7cawxn5aoq-an.a.run.app
 schemes:
-  - http
+  - https
 produces:
   - application/json
 consumes:
   - application/json
 paths:
-  '/users/{userId}':
+  /users/{userId}:
     parameters:
       - type: integer
         name: userId

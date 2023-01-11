@@ -1,9 +1,9 @@
 openapi: 3.0.1
 info:
-  title: openapi-test
+  title: stoplight-studio-test-api
   version: "1.0"
 servers:
-- url: http://localhost:3000/
+- url: /
 paths:
   /users/{userId}:
     get:
@@ -177,4 +177,6 @@ components:
       type: object
 x-stoplight:
   id: 6hhos2agrtnzd
+x-google-backend:
+  address: https://openapi-7cawxn5aoq-an.a.run.app
 x-original-swagger-version: "2.0"
